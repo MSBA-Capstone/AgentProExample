@@ -1,1 +1,103 @@
 # AgentProExample
+
+## Project Structure
+
+```
+finalProject/
+│
+├── backend/         # FastAPI backend server and custom tools
+│   ├── backend.py   # Main backend API entrypoint
+│   └── rag_tool.py  # Custom RAG tool for cat facts
+│
+├── frontend/        # React frontend (Vite)
+│   ├── src/         # React source code
+│   └── ...          # Static files, configs, etc.
+│
+├── RAG/             # RAG index builder and data
+│   ├── ragInit.py   # Script to build/update FAISS index
+│   └── cat-facts.txt# Cat facts data file
+│
+├── .gitignore       # Git ignore rules
+├── README.md        # Project documentation
+└── ...              # Other project files
+```
+
+## Local Setup Instructions
+
+### Requirements
+
+- **Python:** 3.10 or newer (recommended: 3.13)
+- **Node.js:** 18.x or newer (recommended: 22.x) [Tip: use nvm to manage multiple versions of Node]
+
+Make sure you have both Python and Node.js installed before proceeding with backend and frontend setup.
+
+### RAG Setup
+
+1. **Install Python dependencies**
+
+	Navigate to the project root and install required packages (you should use a virtual environment):
+
+	```bash
+	pip install langchain_community langchain_text_splitters langchain-huggingface sentence-transformers faiss-cpu
+	```
+
+    This is probably the hardest part lol, reach out to Jack if you're having troubles
+
+2. **Prepare your cat facts data**
+
+	- Edit or add facts to `RAG/cat-facts.txt` (one fact per line).
+
+3. **Build the RAG index**
+
+	From the project root, run:
+
+	```bash
+	python RAG/ragInit.py
+	```
+
+	This should create or update the FAISS index in `RAG/faiss_index/`.
+
+    ### Backend Setup
+
+1. **Install backend dependencies**
+
+	From the project root, install FastAPI and Uvicorn:
+
+	```bash
+	pip install fastapi uvicorn dotenv
+
+    # install agentPro
+    pip install git+https://github.com/traversaal-ai/AgentPro.git -q
+	```
+
+2. **Start the backend server**
+
+	From the project root, run:
+
+	```bash
+	uvicorn backend.backend:app --reload
+	```
+
+	The backend will be available at `http://localhost:8000`.
+
+
+    ### Frontend Setup
+
+1. **Install frontend dependencies**
+
+	From the `frontend` directory:
+
+	```bash
+	cd frontend
+	npm install
+	```
+
+2. **Start the frontend dev server**
+
+	Still in the `frontend` directory, run:
+
+	```bash
+	npm run dev
+	```
+
+	The frontend will be available at `http://localhost:5173` by default.
