@@ -9,11 +9,22 @@ class RagTool(Tool):
     input_format: str = "A string query"  # Instruction on what kind of input the tool expects with example
 
     def run(self, input_text: Any) -> str:
-        # Load FAISS vectorstore and perform RAG retrieval
-        from langchain_community.vectorstores import FAISS
-        from langchain_huggingface import HuggingFaceEmbeddings
-        INDEX_PATH = "RAG/faiss_index"
-        embeddings = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
-        vectorstore = FAISS.load_local(INDEX_PATH, embeddings, allow_dangerous_deserialization=True)
-        results = vectorstore.similarity_search(input_text, k=4)
-        return "\n".join([r.page_content for r in results])
+            # Load Annoy index and TF-IDF vectorizer, perform RAG retrieval
+            import os
+            import pickle
+            import numpy as np
+            from annoy import AnnoyIndex
+
+            INDEX_PATH = os.path.join(os.path.dirname(__file__), "..", "RAG", "annoy_index")
+            annoy_index = AnnoyIndex(1000, metric='angular')
+            annoy_index.load(os.path.join(INDEX_PATH, "index.ann"))
+            with open(os.path.join(INDEX_PATH, "texts.pkl"), "rb") as f:
+                texts = pickle.load(f)
+            with open(os.path.join(INDEX_PATH, "vectorizer.pkl"), "rb") as f:
+                vectorizer = pickle.load(f)
+
+            # Embed the query
+            query_vec = vectorizer.transform([input_text]).toarray()[0].astype(np.float32)
+            idxs = annoy_index.get_nns_by_vector(query_vec, 4)
+            results = [texts[i] for i in idxs]
+            return "\n".join(results)

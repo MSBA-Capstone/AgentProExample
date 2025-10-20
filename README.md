@@ -28,6 +28,21 @@ finalProject/
 └── ...              # Other project files
 ```
 
+
+## Environment Variables (.env File)
+
+Some parts of this project require configuration via a `.env` file. This file should be placed in the project root (next to `backend/`, `frontend/`, and `RAG/`).
+
+**Example `.env` file:**
+
+```
+OPENAI_API_KEY=your_openai_key_here
+```
+
+**Notes:**
+- Do **not** commit your `.env` file to version control. It is included in `.gitignore` by default.
+- If you add new environment variables, make sure to update your `.env` file accordingly.
+
 ## Local Setup Instructions
 
 ### Requirements
