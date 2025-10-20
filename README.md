@@ -1,5 +1,11 @@
 # AgentProExample
 
+## Features
+
+- **Cat RAG Chat**: Ask questions about cats and get answers powered by a local Retrieval-Augmented Generation (RAG) system built on your own cat facts.
+- **Add Your Own Cat Facts**: Users can submit new cat facts through the frontend, which are instantly added to the knowledge base and indexed for future queries.
+- **Random Cat Images**: Each chat session displays a random cat image fetched from The Cat API for a fun, engaging experience.
+
 ## Project Structure
 
 ```
