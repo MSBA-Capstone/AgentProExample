@@ -1,6 +1,8 @@
 
 
 import { useState, useEffect } from 'react';
+// Use VITE_API_BASE_URL for API calls
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
 import './App.css';
 
 function App() {
@@ -32,7 +34,7 @@ function App() {
     setResponse("");
     await fetchCatImg(); // update cat image on each query
     try {
-      const res = await fetch('http://localhost:8000/query', {
+  const res = await fetch(`${API_BASE_URL}/query`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ query })
@@ -54,7 +56,7 @@ function App() {
       return;
     }
     try {
-      const res = await fetch('http://localhost:8000/add_fact', {
+  const res = await fetch(`${API_BASE_URL}/add_fact`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ fact })
