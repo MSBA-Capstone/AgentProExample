@@ -27,6 +27,17 @@ tools = [
 ]
 agent = ReactAgent(model=model, tools=tools)
 
+@app.post("/validate_password")
+async def validate_password(request: Request):
+    data = await request.json()
+    password = data.get("password", "")
+    correct_password = os.getenv("APP_PASSWORD")
+    if correct_password is None:
+        return {"success": False, "error": "Server password not set."}
+    if password == correct_password:
+        return {"success": True}
+    return {"success": False}
+
 @app.post("/query")
 async def run_query(request: Request):
     data = await request.json()

@@ -40,6 +40,7 @@ Some parts of this project require configuration via a `.env` file. This file sh
 
 ```
 OPENAI_API_KEY=your_openai_key_here
+APP_PASSWORD=your_app_password
 ```
 
 **Notes:**
