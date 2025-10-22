@@ -1,5 +1,3 @@
-
-
 import { useState, useEffect } from 'react';
 // Use VITE_API_BASE_URL for API calls
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
@@ -32,7 +30,7 @@ function PasswordScreen({ onSuccess }) {
   };
 
   return (
-    <div className="app-container" style={{ maxWidth: 400, margin: '80px auto', padding: 24, background: '#fff', borderRadius: 12, boxShadow: '0 2px 16px #0001' }}>
+    <div className="app-container" style={{ maxWidth: 400, margin: '80px auto', padding: 24, background: 'var(--card-bg)', borderRadius: 12, boxShadow: 'var(--shadow)' }}>
       <h2 style={{ textAlign: 'center', marginBottom: 16 }}>🔒 Enter Access Password</h2>
       <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
         <input
@@ -40,7 +38,7 @@ function PasswordScreen({ onSuccess }) {
           value={password}
           onChange={e => setPassword(e.target.value)}
           placeholder="Password"
-          style={{ padding: 10, fontSize: 16, borderRadius: 6, border: '1px solid #ccc' }}
+          style={{ padding: 10, fontSize: 16, borderRadius: 6, background: 'var(--input-bg)', color: 'var(--text)', border: '1px solid var(--input-border)' }}
           disabled={loading}
         />
         <button type="submit" disabled={loading || !password.trim()} style={{ padding: '10px 0', fontSize: 16, borderRadius: 6, background: '#1976d2', color: '#fff', border: 'none', cursor: 'pointer' }}>
@@ -127,7 +125,7 @@ function App() {
   }
 
   return (
-    <div className="app-container" style={{ maxWidth: 500, margin: '40px auto', padding: 24, background: '#fff', borderRadius: 12, boxShadow: '0 2px 16px #0001' }}>
+    <div className="app-container" style={{ maxWidth: 500, margin: '40px auto', padding: 24, background: 'var(--card-bg)', borderRadius: 12, boxShadow: 'var(--shadow)' }}>
       <h1 style={{ textAlign: 'center', marginBottom: 16 }}>🐾 Cat RAG Chat</h1>
       {catImg && (
         <div style={{ textAlign: 'center', marginBottom: 16 }}>
@@ -142,13 +140,13 @@ function App() {
           placeholder="Ask a question about cats..."
           disabled={loading}
           className="chat-input"
-          style={{ flex: 1, padding: 10, fontSize: 16, borderRadius: 6, border: '1px solid #ccc' }}
+          style={{ flex: 1, padding: 10, fontSize: 16, borderRadius: 6, background: 'var(--input-bg)', color: 'var(--text)', border: '1px solid var(--input-border)' }}
         />
         <button type="submit" disabled={loading || !query.trim()} style={{ padding: '0 18px', fontSize: 16, borderRadius: 6, background: '#ff9800', color: '#fff', border: 'none', cursor: 'pointer' }}>
           {loading ? "Loading..." : "Ask"}
         </button>
       </form>
-      <div className="chat-response" style={{ background: '#f6f6f6', borderRadius: 8, padding: 16, minHeight: 80 }}>
+      <div className="chat-response" style={{ background: 'var(--input-bg)', borderRadius: 8, padding: 16, minHeight: 80, color: 'var(--text)' }}>
         {response && <pre style={{ margin: 0, whiteSpace: 'pre-wrap', wordBreak: 'break-word' }}>{response}</pre>}
       </div>
 
@@ -161,7 +159,7 @@ function App() {
           onChange={e => setFact(e.target.value)}
           placeholder="Enter a new cat fact..."
           className="chat-input"
-          style={{ flex: 1, padding: 10, fontSize: 16, borderRadius: 6, border: '1px solid #ccc' }}
+          style={{ flex: 1, padding: 10, fontSize: 16, borderRadius: 6, background: 'var(--input-bg)', color: 'var(--text)', border: '1px solid var(--input-border)' }}
         />
         <button type="submit" style={{ padding: '0 18px', fontSize: 16, borderRadius: 6, background: '#4caf50', color: '#fff', border: 'none', cursor: 'pointer' }}>
           Add Fact
@@ -173,3 +171,4 @@ function App() {
 }
 
 export default App;
+

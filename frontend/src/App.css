@@ -1,3 +1,26 @@
+/* Dark mode and theme variables */
+:root {
+  --bg: #fff;
+  --card-bg: #fff;
+  --text: #222;
+  --input-bg: #fff;
+  --input-border: #ccc;
+  --shadow: 0 2px 16px #0001;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #181a1b;
+    --card-bg: #23272f;
+    --text: #f3f3f3;
+    --input-bg: #23272f;
+    --input-border: #444;
+    --shadow: 0 2px 16px #0006;
+  }
+}
+body {
+  background: var(--bg);
+  color: var(--text);
+}
 #root {
   max-width: 1280px;
   margin: 0 auto;
