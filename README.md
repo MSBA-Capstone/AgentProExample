@@ -1,5 +1,8 @@
 # AgentProExample
 
+## Hosted Version
+This app is hosted on Vercel https://agent-pro-example.vercel.app/
+
 ## Features
 
 - **Cat RAG Chat**: Ask questions about cats and get answers powered by a local Retrieval-Augmented Generation (RAG) system built on your own cat facts.
@@ -59,7 +62,7 @@ Make sure you have both Python and Node.js installed before proceeding with back
 	Navigate to the project root and install required packages (you should use a virtual environment):
 
 	```bash
-	pip install langchain_community langchain_text_splitters langchain-huggingface sentence-transformers faiss-cpu
+	pip install -r requirements.txt
 	```
 
     This is probably the hardest part lol, reach out to Jack if you're having troubles
@@ -82,14 +85,7 @@ Make sure you have both Python and Node.js installed before proceeding with back
 
 1. **Install backend dependencies**
 
-	From the project root, install FastAPI and Uvicorn:
-
-	```bash
-	pip install fastapi uvicorn dotenv
-
-    # install agentPro
-    pip install git+https://github.com/traversaal-ai/AgentPro.git -q
-	```
+	All backend packages should be already installed
 
 2. **Start the backend server**
 
